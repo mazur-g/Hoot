@@ -11,8 +11,7 @@ import hello.views
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
-    url(r'', include('log.urls')),
-    url(r'^login/$', views.login, {'template_name': 'login.html'},
+    url(r'^login/$', hello.views.login, name='login'),
     url(r'^map/$', hello.views.map, name='map'),
     url(r'^admin/', include(admin.site.urls)),
 ]
