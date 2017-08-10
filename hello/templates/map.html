@@ -3,7 +3,10 @@
 
 {% block content %}
 
-  <head>
+<div class="jumbotron text-left">
+
+  <div class="container">
+
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>GeoRSS Layers</title>
@@ -20,8 +23,7 @@
         padding: 0;
       }
     </style>
-  </head>
-  <body>
+
     <div id="map"></div> 
 	<script>
       function initMap() {
@@ -31,7 +33,7 @@
         });
 
         var georssLayer = new google.maps.KmlLayer({
-          url: 'http://hoot-hoot.herokuapp.com/static/posts.xht'
+          url: 'http://api.flickr.com/services/feeds/geo/?format=feed-georss'
         });
         georssLayer.setMap(map);
       }
@@ -40,6 +42,8 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&callback=initMap">
     </script>
-  </body>
+
+  </div>
+</div>
 
 {% endblock %}
