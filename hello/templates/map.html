@@ -53,15 +53,14 @@ function showPosition(position) {
 
 <form>
 
-<div class="input-group">
-    <input type="text" class="form-control" placeholder="Search text">
-    <span class="input-group-btn" style="width:0;">
-        <button class="btn btn-default" type="button">Go!</button>
-    </span>
-</div>
+  <div class="form-group">
+    <label for="formGroupExampleInput"><h2>Post message on map!</h2></label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your message">
+    <a type="button" class="btn btn-lg btn-default" onClick="getLocation()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
 
+  </div>
 </form>
-</div>
+
 
 
 
