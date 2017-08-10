@@ -30,7 +30,7 @@
 
     <div id="map"></div>
 
-  <div class="alert alert-success alert-dismissable fade in">
+  <div class="alert alert-success alert-dismissable fade in collapse" id="succesfulPost">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Success!</strong> 
 <p id="demo"></p>
@@ -52,6 +52,9 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
 }
+
+$('#passwordsNoMatchRegister').fadeIn();
+
 </script>
 
 
