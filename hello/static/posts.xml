@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<rss version="2.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+
+<channel>
+
+<title>test</title>
+
+<link>http://localhost/default.aspx</link>
+
+<description>Hello world!</description>
+
+<item>
+
+<name>Sample location</name>
+
+<description>Aspen, CO</description>
+<geo:Point>
+
+<geo:lat>39.1930007935</geo:lat>
+
+<geo:lon>-106.820999146</geo:lon>
+
+</geo:Point>
+</item>
+
+</channel>
+
+</rss>
