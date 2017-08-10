@@ -15,7 +15,8 @@
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
-        height: 50%;
+        height: 100%;
+	width: 50%;
         margin: 0;
         padding: 0;
       }
@@ -23,8 +24,12 @@
   </head>
   <body>
 
-
+<div class="jumbotron text-center">
+  <div class="container">
     <div id="map"></div>
+</div>
+</div>
+
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -38,6 +43,7 @@
         georssLayer.setMap(map);
       }
     </script>
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&callback=initMap">
     </script>
