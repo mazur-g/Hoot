@@ -10,6 +10,10 @@ def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, 'index.html')
 
+def map(request):
+    # return HttpResponse('Hello from Python!')
+    return render(request, 'map.html')
+
 def db(request):
 
     greeting = Greeting()
