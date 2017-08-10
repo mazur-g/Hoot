@@ -13,7 +13,7 @@
        * element that contains the map. */
       #map {
         height: 100%;
-	width: 100%;
+	width: 70%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -26,6 +26,24 @@
   <body>
 
     <div id="map"></div>
+
+<nobr>
+
+<form>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Post message on map!</label><br>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your message">
+  </div>
+</form>
+
+<a type="button" class="btn btn-lg btn-default" onClick="getLocation()">Post<span class="glyphicon glyphicon-log-in"></span></a>
+
+<p id="demo"></p>
+
+
+
+	
+
 
 
     <script>
@@ -46,6 +64,22 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&callback=initMap">
     </script>
 
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+}
+</script>
 
   </body>
 </html>
