@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -37,4 +40,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&callback=initMap">
     </script>
   </body>
-</html>
+
+{% endblock %}
