@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% from time import localtime %}
 {% block content %}
 
 <html>
@@ -31,19 +32,36 @@
     <div id="map"></div>
 
 <script>
-var x = document.getElementById("demo");
+var x = 0;
+var y = 0;
 
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
+{% with open(static 'rgdata.xht','a') as data: %}
+	{% data.write('<entry>
+    <title>NEW_ENTRY</title>
+ <published>string(localtime())</published>
+    <updated>string(localtime())</updated>
+     <content type="html">	
+
+</content>
+  <georss:point>string(x)+' '+string(y)</georss:point>
+    <geo:lat>string(x)</geo:lat>
+    <geo:long>string(y)</geo:long>
+    <woe:woeid>11122233</woe:woeid>
+</entry>
+
+') %}
+
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    x = position.coords.latitude;
+    y = position.coords.longitude;
 }
 
 $('#passwordsNoMatchRegister').fadeIn();
