@@ -13,10 +13,11 @@ def map(request):
     if request.method == 'POST':
             x = request.POST['x']
             y = request.POST['y']
-            # doSomething with pieFact here...
+            with open("/hello/static/rgdata.xht","a") as datas:
+                datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
             return render(request, 'map.html') # if everything is OK
     # nothing went well
-    return HttpResponse('FAIL!!!!!')
+    return render(request, 'map.html')
 
 
 def signin(request):
