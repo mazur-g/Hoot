@@ -41,7 +41,6 @@ function getLocation() {
     x = navigator.geolocation.getCurrentPosition().coords.latitude;
     y = navigator.geolocation.getCurrentPosition().coords.longitude;
 var URL1 = "{% url 'map' %}";
-var URL2 = "{% url 'map' %}";
 
 }
 
@@ -53,30 +52,20 @@ $('#passwordsNoMatchRegister').fadeIn();
 </script>
 
 <script>
-function updateX(){
-    var data = {'x': x};
+function update(){
+    var data = {'x': x, 'y': y};
     $.post(URL1, data, function(response){
         if(response === 'success'){ alert('Yay!'); }
         else{ alert('Error! :('); }
     });
 }
 
-function updateY(){
-    var data = {'y': y};
-    $.post(URL2, data, function(response){
-        if(response === 'success'){ alert('Yay!'); }
-        else{ alert('Error! :('); }
-    });
-}
-
-
 
 $(document).ready(function(){
     $('#postbtn').click(function(){
     x = navigator.geolocation.getCurrentPosition().coords.latitude;
     y = navigator.geolocation.getCurrentPosition().coords.longitude;
-	updateX();
-        updateY();
+	update();
     });
 });
 </script>
