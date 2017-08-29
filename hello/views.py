@@ -16,7 +16,7 @@ def map(request):
             # doSomething with pieFact here...
             return render(request, 'map.html') # if everything is OK
     # nothing went well
-    return HttpRepsonse('FAIL!!!!!')
+    return HttpResponse('FAIL!!!!!')
 
 
 def signin(request):
