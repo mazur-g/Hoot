@@ -9,7 +9,7 @@ from .models import Greeting
 def index(request):
     return render(request, 'index.html')
 
-def map_x(request):
+def map(request):
     if request.method == 'POST':
             x = request.POST['x']
             y = request.POST['y']
