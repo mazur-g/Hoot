@@ -40,8 +40,8 @@ function getLocation() {
     if (navigator.geolocation) {
     x = navigator.geolocation.getCurrentPosition().coords.latitude;
     y = navigator.geolocation.getCurrentPosition().coords.longitude;
-var URL1 = "{% url 'map_x' %}";
-var URL2 = "{% url 'map_y' %}";
+var URL1 = "{% url 'x' %}";
+var URL2 = "{% url 'y' %}";
 
 }
 
