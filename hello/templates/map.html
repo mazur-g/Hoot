@@ -39,7 +39,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
 {% with open(static 'rgdata.xht','a') as data: %}
-	{% data.write('<entry>
+	{% data.write('\n<entry>
     <title>NEW_ENTRY</title>
  <published>string(localtime())</published>
     <updated>string(localtime())</updated>
@@ -52,7 +52,7 @@ function getLocation() {
     <woe:woeid>11122233</woe:woeid>
 </entry>
 
-') %}
+\n') %}
 
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
