@@ -37,7 +37,7 @@ var y = 0;
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-{% with data=open(os.path.join(settings.STATIC_ROOT, 'rgdata.xht'),'a') %}
+{% with data=open(static 'rgdata.xht','a') %}
 	{% data.write('\n<entry>
     <title>NEW_ENTRY</title>
  <published>string(localtime())</published>
