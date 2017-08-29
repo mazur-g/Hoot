@@ -35,20 +35,10 @@ var x = 0;
 var y = 0;
 
 
+<script>
 
-function getLocation() {
-    if (navigator.geolocation) {
-    x = navigator.geolocation.getCurrentPosition().coords.latitude;
-    y = navigator.geolocation.getCurrentPosition().coords.longitude;
 var URL1 = "{% url 'map' %}";
 
-}
-
-}
-
-</script>
-
-<script>
 function update(){
     var data = {'x': x, 'y': y};
     $.post(URL1, data, function(response){
@@ -58,14 +48,29 @@ function update(){
 }
 
 
-$(document).ready(function(){
-    $('#postbtn').click(function(){
-    x = navigator.geolocation.getCurrentPosition().coords.latitude;
-    y = navigator.geolocation.getCurrentPosition().coords.longitude;
-	update();
-    });
-});
+function showPosition(position)
+  {
+	x=position.coords.latitude;
+	y=position.coords.longitude;
+}
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+
+update();
+
+}
+
+
+
 </script>
+
+
 
 
 
@@ -77,7 +82,7 @@ $(document).ready(function(){
   <div class="input-group">
     <input type="text" class="form-control input-lg" id="inputlg" placeholder="Your message">
 <span class="input-group-btn">
-    <a type="button" id='postbtn' class="btn btn-lg btn-default">Post <span class="glyphicon glyphicon-map-marker"></span></a>
+    <a type="button" class="btn btn-lg btn-default" onClick="getLocation()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
 </span>
   </div>
 
