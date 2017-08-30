@@ -303,7 +303,7 @@ MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = None
+STATIC_ROOT = "/hello/static/"
 
 # URL that handles the static files served from STATIC_ROOT.
 # Example: "http://example.com/static/", "http://static.example.com/"

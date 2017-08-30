@@ -12,7 +12,6 @@ import hello.views
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
     url(r'^map/$', hello.views.map, name='map'),
-    url(r'^test/$', hello.views.test, name='test'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]

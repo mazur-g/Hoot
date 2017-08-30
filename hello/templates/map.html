@@ -31,24 +31,47 @@
     <div id="map"></div>
 
 <script>
-var x = document.getElementById("demo");
+var x = 0;
+var y = 0;
+
+
+<script>
+
+var URL1 = "{% url 'map' %}";
+
+function update(){
+    var data = {'x': x, 'y': y};
+    $.post(URL1, data, function(response){
+        if(response === 'success'){ alert('Yay!'); }
+        else{ alert('Error! :('); }
+    });
+}
+
+
+function showPosition(position)
+  {
+	x=position.coords.latitude;
+	y=position.coords.longitude;
+}
+
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
     }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+
+update();
+
 }
 
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-}
 
-$('#passwordsNoMatchRegister').fadeIn();
 
 </script>
+
+
+
 
 
 <div class="jumbotron text-center">
@@ -59,7 +82,7 @@ $('#passwordsNoMatchRegister').fadeIn();
   <div class="input-group">
     <input type="text" class="form-control input-lg" id="inputlg" placeholder="Your message">
 <span class="input-group-btn">
-    <a type="button" class="btn btn-lg btn-default" onClick="getLocation()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
+    <a type="button" class="btn btn-lg btn-default" onClick="update()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
 </span>
   </div>
 
@@ -81,14 +104,14 @@ $('#passwordsNoMatchRegister').fadeIn();
         });
 
         var georssLayer = new google.maps.KmlLayer({
-          url: 'http://api.flickr.com/services/feeds/geo/'
+          url: 'http://hoot-hoot.herokuapp.com/static/rgdata.xht'
         });
         georssLayer.setMap(map);
       }
     </script>
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&center=-33.9,151.14999999999998&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0x242f3e&style=element:labels.text.fill%7Ccolor:0x746855&style=element:labels.text.stroke%7Ccolor:0x242f3e&style=feature:administrative.locality%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:poi.park%7Celement:geometry%7Ccolor:0x263c3f&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x6b9a76&style=feature:road%7Celement:geometry%7Ccolor:0x38414e&style=feature:road%7Celement:geometry.stroke%7Ccolor:0x212a37&style=feature:road%7Celement:labels.text.fill%7Ccolor:0x9ca5b3&style=feature:road.highway%7Celement:geometry%7Ccolor:0x746855&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0x1f2835&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0xf3d19c&style=feature:transit%7Celement:geometry%7Ccolor:0x2f3948&style=feature:transit.station%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:water%7Celement:geometry%7Ccolor:0x17263c&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x515c6d&style=feature:water%7Celement:labels.text.stroke%7Ccolor:0x17263c&size=480x360&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBup80AruXn-v3FUI5oMdDfFkRIsT66hHQ&callback=initMap">
     </script>
 
 
