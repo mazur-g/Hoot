@@ -12,7 +12,10 @@ def index(request):
 def map(request):
     return render(request, 'map.html')
 
-def signin(request):
-    return render(request, 'login.html')
+def test(request):
+	return render(request, 'test.html')
+
+
+
 
 

@@ -9,8 +9,11 @@
       <img src="{% static 'hoot-logo.png'%}">
     </a>
     <h1>Welcome to Hoot!</h1>
-    <p>Currently account registration is closed</p>
-    <a type="button" class="btn btn-lg btn-default" href="http://hoot-hoot.herokuapp.com/">Log in <span class="glyphicon glyphicon-log-in"></span></a>
+    {% if user.is_active %}
+    <p>You are logged as {{user.username}}</p>
+    {% endif %}
+    
+    <a type="button" class="btn btn-lg btn-default" href="{% url 'accounts:login' %}">Log in <span class="glyphicon glyphicon-log-in"></span></a>
 
     <div class="space">
 

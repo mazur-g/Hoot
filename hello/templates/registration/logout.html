@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+
+{% load staticfiles %}
+{% block content %}
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -47,50 +48,33 @@
         max-width: 100%
     }
     .jumbotron .space {
-	padding-bottom: 500px;
-	background: #ff7700;
+    padding-bottom: 500px;
+    background: #ff7700;
     }
 
     html, body {
-	overflow: hidden;
+    overflow: hidden;
       }
 
   </style>
 </head>
-<body>
-
-
-<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+<div class="jumbotron text-center">
   <div class="container">
-    <ul class="nav navbar-nav">
-      <li>
-        <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
-      </li>
-      <li>
-        <a href="{% url 'index' %}"><span class="glyphicon glyphicon-user"></span> Your Profile</a>
-      </li>
-      <li>
-        <a href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Hoot Map</a>
-      </li>
-      <li>
-        <a href="{% url 'accounts:register' %}">Register </a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="navbar-right">
-        <a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a>
-      </li>
-    </ul>
+    <a href="/" class="hoot-logo">
+      <img src="{% static 'hoot-logo.png'%}">
+    </a>
+
+    <div class="space">
+      <p>You have been logged out succesfully. Redirection to home page in few seconds.</p>
   </div>
-</nav>
+<script>
+    function redirect(){
+       window.location.href = "{% url 'index' %}";
+    }
 
+    setTimeout(redirect, 3000); //2000 is equivalent to 2 seconds
+</script>
+</div>
+</div>
+{% endblock %}
 
-{% block content %}{% endblock %}
-
-
-        {% block javascript %}
-        {% endblock %}
-
-
-</body>
-</html>
