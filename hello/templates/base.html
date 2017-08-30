@@ -64,21 +64,25 @@
   <div class="container">
     <ul class="nav navbar-nav">
       <li>
-        <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+        <a href="/"><span class="glyphicon glyphicon-home"></span> Home </a>
       </li>
       <li>
-        <a href="{% url 'index' %}"><span class="glyphicon glyphicon-user"></span> Your Profile</a>
+        <a href="{% url 'index' %}"><span class="glyphicon glyphicon-user"></span> Your Profile </a>
       </li>
       <li>
-        <a href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Hoot Map</a>
+        <a href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Hoot Map </a>
       </li>
       <li>
-        <a href="{% url 'accounts:register' %}">Register </a>
+	{% if not user.is_active %}
+        <a href="{% url 'accounts:register' %}">span class="glyphicon glyphicon-barcode"></span> Register </a>
+	{% endif %}
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right">
+	{% if user.is_active %}
         <a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a>
+	{% endif %}
       </li>
     </ul>
   </div>
