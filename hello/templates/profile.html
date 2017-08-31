@@ -6,13 +6,15 @@
 <div class="container">
 
   <div class="jumbotron text-center">
-    <h1>Welcome to Hoot, here is your profile</h1>
+    <h1>Welcome, here is your profile     <a href="/" class="hoot-logo">
+      <img src="{% static 'hoot-logo.png'%}">
+    </a></h1>
   </div>
 
-  <h2>Username: {{user.username}}<br>
-      Email Adress: {{user.email}}<br>
-      Last login: {{user.last_login}}<br>
-      Date joined: {{user.date_joined}}<br>
+  <h2>Username: {{user.username}}<br><br>
+      Email Adress: {{user.email}}<br><br>
+      Last login: {{user.last_login}}<br><br>
+      Date joined: {{user.date_joined}}<br><br>
    </h2>
 
 
