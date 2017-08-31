@@ -9,11 +9,17 @@
       <img src="{% static 'hoot-logo.png'%}">
     </a>
     <h1>Welcome to Hoot!</h1>
+
     {% if user.is_active %}
-    <p>You are logged as {{user.username}}</p>
+    <p>You are logged as {{user.username}}</p><br>
+    <a type="button" class="btn btn-lg btn-default" href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Explore the hoot map </a>
+    {% endif %}    
+
+    {% if not user.is_active %}
+    <a type="button" class="btn btn-lg btn-default" href="{% url 'accounts:login' %}">Log in <span class="glyphicon glyphicon-log-in"></span></a> or
+    <a type="button" class="btn btn-lg btn-default" href="{% url 'accounts:register' %}">Register <span class="glyphicon glyphicon-barcode"></span></a>
+    <h2>to explore</h2>
     {% endif %}
-    
-    <a type="button" class="btn btn-lg btn-default" href="{% url 'accounts:login' %}">Log in <span class="glyphicon glyphicon-log-in"></span></a>
 
     <div class="space">
 
