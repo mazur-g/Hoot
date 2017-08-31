@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'index.html')
 
 def map(request):
-    if user.is_active:
+    if request.user.is_active:
         if request.method == 'POST':
                 x = request.POST['x']
                 y = request.POST['y']
