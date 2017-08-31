@@ -24,6 +24,7 @@ def map(request):
     else:
         return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=False)
 
+@login_required
 def profile(request):
     if request.user.is_active:
         return render(request, 'profile.html')
