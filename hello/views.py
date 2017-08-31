@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
@@ -9,6 +10,7 @@ from .models import Greeting
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def map(request):
     if request.user.is_active:
         if request.method == 'POST':
