@@ -20,6 +20,6 @@ def map(request):
         # nothing went well
         return render(request, 'map.html')
     else:
-        return render(request, 'accounts:login')
+        return render(request, url 'accounts:login')
 
 
