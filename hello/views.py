@@ -20,6 +20,6 @@ def map(request):
         # nothing went well
         return render(request, 'map.html')
     else:
-        return redirect('http://hoot-hoot.herokuapp.com', permanent=True)
+        return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=True)
 
 
