@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+  <div class="container">
+
+    <h1>Welcome to Hoot, here is your profile</h1>
+
+    <h2>Username: {{user.username}}<br>
+      Email Adress: {{user.email}}<br>
+      Last login: {{user.last_login}}<br>
+      Date joined: {{user.date_joined}}<br>
+    </h2>
+
+
+    <div class="space"></div>
+
+
+  </div>
+</div>
+{% endblock %}

@@ -22,4 +22,10 @@ def map(request):
     else:
         return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=False)
 
+def profile(request):
+    if request.user.is_active:
+        return render(request, 'profile.html')
+    else:
+        return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=False)
+
 
