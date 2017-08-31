@@ -11,8 +11,8 @@
     <h1>Welcome to Hoot!</h1>
 
     {% if user.is_active %}
-    <h2>You are logged as {{user.username}}</h2><br>
-    <a type="button" class="btn btn-lg btn-default" href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Explore the hoot map </a>
+    <h2>You are logged as {{user.username}}</h2><br><br>
+    <a type="button" class="btn btn-lg btn-default" href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Explore the Hoot Map! </a>
     {% endif %}    
 
     {% if not user.is_active %}
