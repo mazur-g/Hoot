@@ -31,13 +31,14 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = (
+    'accounts',
+    'hello',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,6 +128,8 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),

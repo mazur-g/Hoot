@@ -22,13 +22,13 @@ def map(request):
         # nothing went well
         return render(request, 'map.html')
     else:
-        return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=False)
+        return redirect("{% url 'accounts:login' %}", permanent=False)
 
 @login_required
 def profile(request):
     if request.user.is_active:
         return render(request, 'profile.html')
     else:
-        return redirect('http://hoot-hoot.herokuapp.com/accounts/login/', permanent=False)
+        return redirect("{% url 'accounts:login'}", permanent=False)
 
 

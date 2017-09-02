@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron text-center">
+<div class="container">
+<figure class="snip1344">
+<img src="{{userProfile.image.url }}" alt="profile-sample1" class="background" height="300" width="300"/>
+<img src="{{userProfile.image.url }}" alt="profile-sample1" class="profile"/>
+
+  <figcaption>
+    <h3>
+    {{userProfile.user.username}}
+    <span>Email: {{userProfile.user.email}}</span>
+    <span>Since: {{userProfile.user.date_joined}}</span>
+    <span>Last activity: {{userProfile.user.last_login}}</span>
+    </h3>
+  </figcaption>
+ </figure>
+</div>
+<div class="space" align="center">
+</div>
+</div>
+
+{% endblock %}

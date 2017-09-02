@@ -8,5 +8,7 @@ urlpatterns = [
 	url(r'^login/$', auth_views.login, name='login'),
 	url(r'^logout/$', auth_views.logout,{'template_name': 'registration/logout.html'}, name='logout'),
 	url(r'^register/$',views.register_page, name='register'),
+	url(r'^search/$',views.search_user, name='search'),
+	url(r'^(?P<username>\w+)/$', views.profile_page, name='profile'),
 
 ]

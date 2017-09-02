@@ -8,6 +8,7 @@ class RegistrationForm(forms.Form):
 	email = forms.EmailField(label='Email')
 	password1 = forms.CharField(label='Password', widget=forms.PasswordInput())
 	password2 = forms.CharField(label='Password(Again)', widget=forms.PasswordInput())
+	image = forms.ImageField(label='Your photo(optional)',required=False)
 	def clean_password2(self):
 		if 'password1' in self.cleaned_data:
 			password1 = self.cleaned_data['password1']
@@ -26,3 +27,8 @@ class RegistrationForm(forms.Form):
 		except ObjectDoesNotExist:
 			return username
 		raise forms.ValidationError('Username is already taken.')	
+
+
+class SearchForm(forms.Form):
+	name = forms.CharField(max_length=30)
+	

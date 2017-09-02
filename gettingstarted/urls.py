@@ -4,7 +4,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 import hello.views
-
+from django.contrib.staticfiles.urls import static
+from django.conf import settings
 # Examples:
 # url(r'^$', 'gettingstarted.views.home', name='home'),
 # url(r'^blog/', include('blog.urls')),
@@ -16,3 +17,5 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

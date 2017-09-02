@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
-  
-      <link rel="stylesheet" href="css/style.css">
 
 
+
+
+{% load staticfiles %}  
+
+<link rel="stylesheet" type = "text/css" href ="{% static 'style.css' %}" />
 <title>Hoot - no more, and no less than you need</title>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -91,23 +92,25 @@
 	{% endif %}
       </li>
     </ul>
+{% if user.is_active %}
+    <ul class="nav navbar-nav">
+    <li> <a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
+    </li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right">
-	{% if user.is_active %}
         <a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a>
-	{% endif %}
       </li>
     </ul>
+  {% endif %}
   </div>
 </nav>
 
 
-{% block content %}{% endblock %}
+{% block content %}{% endblock content %}
 
 
         {% block javascript %}
         {% endblock %}
-
-
 </body>
 </html>
