@@ -1,4 +1,10 @@
-{% extends 'base.html' %}
-{% block content %}
-{{form.as_ul}}
-{% endblock content %}
+{% extends 'index.html' %}
+{% block search %}
+<center>
+<form method="POST" action =".">
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" value="Search" />
+</form>
+</center>
+{% endblock %}

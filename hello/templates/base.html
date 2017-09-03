@@ -3,6 +3,8 @@
 <head>
 
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
 {% load staticfiles %}  
@@ -16,9 +18,10 @@
 
     .jumbotron {
         background: #ff7700;
-        color: white;
-        padding-bottom: 80px
+        color: #4D1F1C;
+
     }
+
     .jumbotron .btn-primary {
         background: #845ac7;
         border-color: #845ac7
@@ -27,9 +30,9 @@
         background: #7646c1
     }
     .jumbotron p {
-        color: #d9ccee;
+        color: #4D1F1C;
         max-width: 75%;
-        margin: 1em auto 2em
+        align-self: right;
     }
     .jumbotron h2 {
         display: inline-block;
@@ -65,7 +68,7 @@
 	background: #ff7700;
     }
 
-    html, body {
+    body {
 	overflow: hidden;
       }
 
@@ -112,5 +115,9 @@
 
         {% block javascript %}
         {% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,10 +1,24 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
 {% block title%}User Registration{% endblock %}
 {% block head%}User Registration{% endblock %}
 {% block content %}
-<form method="post" action="." enctype="multipart/form-data">
-{{ form.as_p}}
-<input type="submit" value="Register" />
-{% csrf_token %}
-</form>
+
+<div class="jumbotron text-center">
+<div class="row">
+<div class="col-sm-6">
+{% crispy form %}
+</div>
+<div class="col-sm-1">
+<a href="/" class="hoot-logo">
+      <img src="{% static 'img/hoot-logo.png'%}">
+    </a>
+</div>
+</div>
+<div class = "space">
+</div>
+</div>
+
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .forms import *
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from  django.core.urlresolvers import reverse
 # Create your views here.
 
 
@@ -25,7 +26,7 @@ def register_page(request):
 			user = User.objects.create_user(username=form.cleaned_data['username'],password=form.cleaned_data['password1'],email=form.cleaned_data['email'])
 			image = request.FILES.get('image','img/default2.jpg')
 			userProfile = UserProfile.objects.create(user=user,image=image)
-			return HttpResponseRedirect('/')
+			return redirect('index')
 	form = RegistrationForm()
 	variables = RequestContext(request,{'form':form})
 	return render_to_response('registration/register.html',variables)
@@ -39,12 +40,12 @@ def search_user(request):
 			try: 
 				name = request.POST['name']
 				get_object_or_404(User,username=name)
-				return HttpReponseRedirect("{% url 'accounts:profile' name %}")
+				return redirect(reverse('accounts:profile',args=[name]))
 			except:
-				pass
+				redirect('accounts:search')
 	form = SearchForm()
 	variables = RequestContext(request,{'form' : form })
-	return render_to_response('search_user.html')
+	return render_to_response('search_user.html',variables)
 
 
 
