@@ -13,12 +13,16 @@
     {{userProfile.user.username}}
     <span>Email: {{userProfile.user.email}}</span>
     <span>Since: {{userProfile.user.date_joined}}</span>
+    {% if not userProfile.user.last_login %}
+    <span>Last activity: {{userProfile.user.date_joined}}</span>
+    {% else %}
     <span>Last activity: {{userProfile.user.last_login}}</span>
+    {% endif %}
     </h3>
   </figcaption>
  </figure>
 </div>
-<div class="space" align="center">
+<div class="space">
 </div>
 </div>
 
