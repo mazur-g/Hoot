@@ -31,39 +31,6 @@
     <div id="map"></div>
 
 <script>
-var x = 0;
-var y = 0;
-
-var URL1 = "{% url 'map' %}";
-
-function update(){
-    var data = {'x': x, 'y': y};
-    $.post(URL1, data, function(response){
-        if(response === 'success'){ alert('Yay!'); }
-        else{ alert('Error! :('); }
-    });
-}
-
-
-function showPosition(position)
-  {
-	x=position.coords.latitude;
-	y=position.coords.longitude;
-}
-
-
-function getLocation() {
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition,showError);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
-
-update();
-
-}
-
-
 
 </script>
 
@@ -74,12 +41,12 @@ update();
 <div class="jumbotron text-center">
   <div class="container">
 
-<form>
+<form action="/map/" method="POST">
 	   
   <div class="input-group">
-    <input type="text" class="form-control input-lg" id="inputlg" placeholder="Your message">
+    <input id="message" value="{{ geo_message }}" class="form-control input-lg" id="inputlg" placeholder="Your message">
 <span class="input-group-btn">
-    <a type="button" class="btn btn-lg btn-default" onClick="update()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
+    <a type="submit" class="btn btn-lg btn-default" onClick="GeoPost()">Post <span class="glyphicon glyphicon-map-marker"></span></a>
 </span>
   </div>
 

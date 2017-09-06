@@ -8,7 +8,7 @@ from accounts.models import UserProfile
 from accounts.forms import ChangeUserProfileForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from .models import Greeting
+from hello.forms import GeoMessageForm
 
 # Create your views here.
 def index(request):
@@ -18,13 +18,14 @@ def index(request):
 def map(request):
     if request.user.is_active:
         if request.method == "POST":
-                x = request.POST['x']
-                y = request.POST['y']
-                with open("/hello/static/rgdata.xht","a") as datas:
-                    datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
-                return HttpResponse(str(x)+' '+str(y)+' It works pirlitirli!') # if everything is OK
+                form = GeoMessageForm(request.POST)
+                if form.is_valid():
+                    return HttpResponse(str(x) + ' ' + str(y) + ' It works pirlitirli!')
+                    #with open("/hello/static/rgdata.xht","a") as datas:
+                    #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
+
         # nothing went well
-        return render(request, 'map.html')
+        return render(request, 'map.html', {'form': form})
     else:
         return redirect("{% url 'accounts:login' %}", permanent=False)
 
