@@ -27,8 +27,6 @@ SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-STATIC_ROOT = "/hello/static/"
-
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # Application definition
 
@@ -129,7 +127,9 @@ ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+STATIC_ROOT = '/app/hello/static/'
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
