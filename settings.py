@@ -155,7 +155,6 @@ LANGUAGES_BIDI = ["he", "ar", "fa", "ur"]
 USE_I18N = True
 LOCALE_PATHS = []
 
-GEOIP_PATH = 'geoip'
 
 # Settings for language cookie
 LANGUAGE_COOKIE_NAME = 'django_language'
