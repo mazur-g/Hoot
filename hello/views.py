@@ -17,15 +17,14 @@ def index(request):
 @login_required
 def map(request):
     if request.user.is_active:
+        form = GeoMessageForm(request.POST)
         if request.method == "POST":
-            form = GeoMessageForm(request.POST)
             if form.is_valid():
                 return HttpResponse(str(form.message)+' It works pirlitirli!')
                 #with open("/hello/static/rgdata.xht","a") as datas:
                 #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
 
         # nothing went well
-            return render(request, 'map.html', {'form': form})
         return render(request, 'map.html', {'form': form})
     else:
         return redirect("{% url 'accounts:login' %}", permanent=False)
