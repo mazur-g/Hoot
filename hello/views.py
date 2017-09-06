@@ -50,7 +50,7 @@ def map(request):
                                 ' <author> \n<name>'+ request.user.username +'</name>\n'
                                 ' <uri>http://www.hoot-hoot.herokuapp.com/accounts/'+ request.user.username +'</uri>\n</author>\n'
                                 ' <georss:point>'+str(location[0])+' '+str(location[1])+'</georss:point>\n <geo:lat>'+str(location[0])+'</geo:lat>\n <geo:long>'
-                                +str(location[1])+'</geo:long>\n <woe:woeid>'+str(randint())+'</woe:woeid> </entry> \n\n')
+                                +str(location[1])+'</geo:long>\n <woe:woeid>'+str(randint(100000,999999))+'</woe:woeid> </entry> \n\n')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
