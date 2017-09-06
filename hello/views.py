@@ -10,6 +10,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from hello.forms import GeoMessageForm
 from django.contrib.gis.geoip import GeoIP
+import os
 
 # Create your views here.
 def index(request):
@@ -35,9 +36,18 @@ def map(request):
                 ip = get_client_ip(request)
                 if ip:
                     location = g.coords(ip)
-                return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
-            #with open("/hello/static/rgdata.xht","a") as datas:
-            #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
+                #return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
+                with open("/hello/static/rgdata.xht","a") as datas:
+                    datas.seek(0, os.SEEK_END)
+                    while datas.tell() and datas.read(1) != '\n':
+                        datas.seek(-2, os.SEEK_CUR)
+                    datas.truncate()
+                    datas.write('<entry> <title>'+request.user.username+'\'s post</title> '
+                                '<published>DATA</published>'
+                                '<content type="html">'+str(geo_message)+'L</content>]'
+                                ' <author> <name>'+ request.user.username +'</name> </author> <georss:point>'+location[0]+' '
+                                +location[1]+'</georss:point> <geo:lat>'+location[0]+'</geo:lat> <geo:long>'
+                                +location[1]+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n</feed>')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
