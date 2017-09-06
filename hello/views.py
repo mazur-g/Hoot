@@ -19,10 +19,14 @@ def index(request):
 def map(request):
     if request.user.is_active:
         if request.method == "POST":
-            form = GeoMessageForm(request.POST)
+            form = GeoMessageForm(massage = request.POST)
             if form.is_valid():
                 geo_message = form.cleaned_data['message']
-                return HttpResponse(str(geo_message)+' It works pirlitirli!')
+                g = GeoIP()
+                ip = request.META.get('REMOTE_ADDR', None)
+                if ip:
+                    location = GeoIP.coords(ip)
+
             #with open("/hello/static/rgdata.xht","a") as datas:
             #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
         else:
