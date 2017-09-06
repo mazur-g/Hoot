@@ -9,6 +9,7 @@ from accounts.forms import ChangeUserProfileForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from hello.forms import GeoMessageForm
+from django.contrib.gis.geoip import GeoIP
 
 # Create your views here.
 def index(request):
