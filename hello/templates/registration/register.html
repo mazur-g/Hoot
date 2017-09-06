@@ -6,9 +6,19 @@
 {% block head%}User Registration{% endblock %}
 {% block content %}
 
+
+ {% if form.errors %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+    	{% endfor %}
+ {% endif %}
 <div class="jumbotron text-center">
 <div class="row">
 <div class="col-sm-6">
+
+
 {% crispy form %}
 </div>
 <div class="col-sm-1">

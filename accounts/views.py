@@ -11,15 +11,9 @@ from  django.core.urlresolvers import reverse
 # Create your views here.
 
 
-def login(request):
-	return render(request,'register/login.html')
-
-def logout(request):
-	logout(request)
-	return render(request,'register/logout.html')
-
 
 def register_page(request):
+	form = RegistrationForm()
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST,request.FILES)
 		if form.is_valid():
@@ -27,7 +21,6 @@ def register_page(request):
 			image = request.FILES.get('image','img/default2.jpg')
 			userProfile = UserProfile.objects.create(user=user,image=image)
 			return redirect('index')
-	form = RegistrationForm()
 	variables = RequestContext(request,{'form':form})
 	return render_to_response('registration/register.html',variables)
 

@@ -3,7 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.contrib.auth.models import User
+from accounts.models import UserProfile
+from accounts.forms import ChangeUserProfileForm
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from .models import Greeting
 
 # Create your views here.
@@ -27,7 +31,21 @@ def map(request):
 @login_required
 def profile(request):
     if request.user.is_active:
-        return render(request, 'profile.html')
+        userProfile = UserProfile.objects.get(user=request.user)
+        form = ChangeUserProfileForm()
+        if request.method == 'POST':
+            form = ChangeUserProfileForm(request.POST,request.FILES)
+            if form.is_valid():
+                user = request.user
+                userProfile = UserProfile.objects.get(user=user)
+                userProfile.image = request.FILES.get('new_image',userProfile.image)
+                user.email = request.POST.get('new_email',user.email)
+                user.save()
+                userProfile.save()
+                context = {'userProfile' : userProfile, 'form' : form}
+                return render(request,'profile.html',context)
+        variables = RequestContext(request,{'form' : form, 'userProfile' : userProfile})
+        return render_to_response('profile.html',variables)
     else:
         return redirect("{% url 'accounts:login'}", permanent=False)
 
