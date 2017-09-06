@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document>
+        <name>Posts</name>
+        <atom:author>
+            <atom:name>Hoot App</atom:name>
+        </atom:author>
+        <atom:link href="https://hoot-hoot.herokuapp.com/"/>
+
+        <Folder>
+           <Placemark id="2012 Jan 15 13:40:16.40 UTC">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-56.072,-60.975,0</coordinates>
+                </Point>
+            </Placemark>
+
+                </Folder>
+    </Document>
+</kml>
