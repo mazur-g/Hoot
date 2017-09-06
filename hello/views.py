@@ -9,7 +9,7 @@ from accounts.forms import ChangeUserProfileForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from hello.forms import GeoMessageForm
-from django.contrib.gis.geoip import GeoIP
+from django.contrib.gis.geoip import GeoIP2
 
 # Create your views here.
 def index(request):
@@ -22,10 +22,10 @@ def map(request):
             form = GeoMessageForm(data=request.POST)
             if form.is_valid():
                 geo_message = form.cleaned_data['message']
-                g = GeoIP()
+                g = GeoIP2()
                 ip = request.META.get('REMOTE_ADDR', None)
                 if ip:
-                    location = GeoIP.coords(ip)
+                    location = GeoIP2.coords(ip)
                 return HttpResponse("works")
             #with open("/hello/static/rgdata.xht","a") as datas:
             #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
