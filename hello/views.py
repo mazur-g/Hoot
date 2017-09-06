@@ -19,7 +19,7 @@ def index(request):
 def map(request):
     if request.user.is_active:
         if request.method == "POST":
-            form = GeoMessageForm(massage = request.POST)
+            form = GeoMessageForm(message = request.POST)
             if form.is_valid():
                 geo_message = form.cleaned_data['message']
                 g = GeoIP()
