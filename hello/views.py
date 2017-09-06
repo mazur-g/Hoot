@@ -11,6 +11,7 @@ from django.template import RequestContext
 from hello.forms import GeoMessageForm
 from django.contrib.gis.geoip import GeoIP
 import os
+from django.conf import settings
 
 # Create your views here.
 def index(request):
@@ -37,7 +38,8 @@ def map(request):
                 if ip:
                     location = g.coords(ip)
                 #return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
-                with open("/hello/static/rgdata.xht","a") as datas:
+                file_path = os.path.join(settings.STATIC_ROOT, 'data/foobar.csv')
+                with open(file_path,"a") as datas:
                     datas.seek(0, os.SEEK_END)
                     while datas.tell() and datas.read(1) != '\n':
                         datas.seek(-2, os.SEEK_CUR)
