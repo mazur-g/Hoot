@@ -15,6 +15,15 @@ from django.contrib.gis.geoip import GeoIP
 def index(request):
     return render(request, 'index.html')
 
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 @login_required
 def map(request):
     if request.user.is_active:
@@ -23,7 +32,7 @@ def map(request):
             if form.is_valid():
                 geo_message = form.cleaned_data['message']
                 g = GeoIP()
-                ip = request.META.get('REMOTE_ADDR', None)
+                ip = get_client_ip(request)
                 if ip:
                     location = g.coords(ip)
                 return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
