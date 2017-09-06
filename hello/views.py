@@ -47,7 +47,8 @@ def map(request):
                 open('file_path','w').close()
                 with open(file_path,'r+') as datas:
                     datas.write(data_tmp+'\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
-                    '">\n\t<name>M 5.0 -'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '+str(geo_message)+
+                    '">\n\t<name>M 5.0 - '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '
+                    +request.user.username+' posts: '+str(geo_message)+
                     '</name>\n'
                     '\t<magnitude>1.0</magnitude>\n'
                     '\t<Point>\n'
