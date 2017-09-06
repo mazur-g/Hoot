@@ -17,6 +17,16 @@
             </Placemark>
 
 
+        <Folder>
+           <Placemark id="2012 Jan 15 13:40:16.40 UTC">
+                <name>M 5.9 - 2012 Jan 15, TEST2 </name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>19.933,49.833,0</coordinates>
+                </Point>
+            </Placemark>
+
+
 <Placemark id="2012 Jan 15 13:40:16.40 UTC">
 	<name>gotik38, 2017-09-06 23:24:13: Test Pirli-Tirli niestety lepiej krótkie wiadomości</name>
 	<magnitude>3.0</magnitude>
