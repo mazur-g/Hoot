@@ -9,7 +9,7 @@
 
         <Folder>
            <Placemark id="2012 Jan 15 13:40:16.40 UTC">
-                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <name>M 5.9 - 2012 Jan 15, TEST</name>
                 <magnitude>5.9</magnitude>
                 <Point>
                     <coordinates>-56.072,-60.975,0</coordinates>
