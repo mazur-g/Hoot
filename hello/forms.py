@@ -12,7 +12,7 @@ class GeoMessageForm(forms.Form):
     def __init__(self):
         self._message = forms.CharField(label='message', max_length=150)
 
-    @@property
+    @property
     def message(self):
         return self._message
 
