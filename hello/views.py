@@ -25,6 +25,7 @@ def map(request):
                 #datas.write('<entry> <title>NOWY_POST</title> <published>DATA</published><content type="html">ZAWARTOSC HTML</content> <author> <name>AUTOR</name> </author> <georss:point>'+str(x)+' '+str(y)+'</georss:point> <geo:lat>'+str(x)+'</geo:lat> <geo:long>'+str(y)+'</geo:long> <woe:woeid>142344433</woe:woeid> </entry>')
 
         # nothing went well
+            return HttpResponse(str(form.message) + ' It works pirlitirli!')
         return render(request, 'map.html', {'form': form})
     else:
         return redirect("{% url 'accounts:login' %}", permanent=False)
