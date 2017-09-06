@@ -8,14 +8,4 @@ from django.core.urlresolvers import reverse
 from crispy_forms.bootstrap import (FormActions)
 
 class GeoMessageForm(forms.Form):
-
-    def __init__(self, postmsg):
-        self._message = postmsg# forms.CharField(label='message', max_length=150)
-
-    @property
-    def message(self):
-        return self._message
-
-    @message.setter
-    def message(self, value):
-        self._message = value
+    message = forms.CharField(label='message', max_length=150)
