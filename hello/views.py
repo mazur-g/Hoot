@@ -12,6 +12,8 @@ from hello.forms import GeoMessageForm
 from django.contrib.gis.geoip import GeoIP
 import os
 from django.conf import settings
+from time import gmtime, strftime
+
 
 # Create your views here.
 def index(request):
@@ -40,12 +42,13 @@ def map(request):
                 #return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
                 file_path = os.path.join(settings.STATIC_ROOT, 'rgdata.xht')
                 with open(file_path,"a") as datas:
-                    datas.write('\n\n<entry> <title>'+request.user.username+'\'s post</title> '
-                                '<published>DATA</published>'
-                                '<content type="html">'+str(geo_message)+'L</content>]'
-                                ' <author> <name>'+ request.user.username +'</name> </author> <georss:point>'+str(location[0])+' '
-                                +str(location[1])+'</georss:point> <geo:lat>'+str(location[0])+'</geo:lat> <geo:long>'
-                                +str(location[1])+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n')
+                    datas.write('\n\n<entry>\n <title>'+request.user.username+'\'s post</title>\n '
+                                '<published>'+ strftime("%Y-%m-%dT%H:%M:%SZ", gmtime()) +'</published>\n'
+                                '<content type="html">'+str(geo_message)+'</content>\n'
+                                ' <author> \n<name>'+ request.user.username +'</name>\n'
+                                ' <uri>http://www.hoot-hoot.herokuapp.com/accounts/'+ request.user.username +'</uri>\n</author>\n'
+                                ' <georss:point>'+str(location[0])+' '+str(location[1])+'</georss:point>\n <geo:lat>'+str(location[0])+'</geo:lat>\n <geo:long>'
+                                +str(location[1])+'</geo:long>\n <woe:woeid>03955</woe:woeid> </entry> \n\n')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
