@@ -40,16 +40,12 @@ def map(request):
                 #return HttpResponse("Twoja lokacja ciulu: "+str(location[0])+', '+str(location[1])+'\nTwoja wiadomość ciulu: '+str(geo_message))
                 file_path = os.path.join(settings.STATIC_ROOT, 'rgdata.xht')
                 with open(file_path,"a") as datas:
-                    datas.seek(0, os.SEEK_END)
-                    while datas.tell() and datas.read(1) != '\n':
-                        datas.seek(-2, os.SEEK_CUR)
-                    datas.truncate()
-                    datas.write('<entry> <title>'+request.user.username+'\'s post</title> '
+                    datas.write('\n\n<entry> <title>'+request.user.username+'\'s post</title> '
                                 '<published>DATA</published>'
                                 '<content type="html">'+str(geo_message)+'L</content>]'
                                 ' <author> <name>'+ request.user.username +'</name> </author> <georss:point>'+location[0]+' '
                                 +location[1]+'</georss:point> <geo:lat>'+location[0]+'</geo:lat> <geo:long>'
-                                +location[1]+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n</feed>')
+                                +location[1]+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
