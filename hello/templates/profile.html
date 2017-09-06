@@ -25,14 +25,26 @@
  </div>
 
  <div class="row" >
-<script>  
-document.getElementById('change').style.display = 'none'
+<script>
+function Show() {
+
+
+  document.getElementById('change').style.display = '';
+}
+window.onload = function() {
+    document.getElementById('change').style.display = 'none';
+};
 </script>
 
 <center>
-
+<button type="button" onClick = "Show();" class = 'btn btn-primary'>Make changes </button>
 
  {% if form.errors %}
+ <script>
+        window.onload = function() {
+    document.getElementById('change').style.display = '';
+  };  
+</script>
         {% for error in field.errors %}
             <div class="alert alert-danger">
                 <strong>{{ error|escape }}</strong>

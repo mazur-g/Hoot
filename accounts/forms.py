@@ -15,7 +15,7 @@ class ChangeUserProfileForm(forms.Form):
 	helper.form_class = 'form-horizontal'
 	helper.label_class = 'col-lg-4'
 	helper.field_class = 'col-lg-2'
-	helper.form_id = 'change'
+	helper.attrs = {'id' : 'change'}
 
 	helper.layout = Layout (
 		Field('new_email', css_class = 'input-sm'),
@@ -23,13 +23,12 @@ class ChangeUserProfileForm(forms.Form):
 		FormActions(Submit('save change', 'Save changes', css_class = 'btn-primary'))
 		)
 
-	def clean_email(self):
-		if 'username' in self.cleaned_data and 'email' in self.cleaned_data:
-			username = self.cleaned_data['username']
-			email = self.cleaned_data['email']
-			if email and User.objects.filter(email=email).exclude(username=username).count():
+	def clean_new_email(self):
+		if 'new_email' in self.cleaned_data:
+			new_email = self.cleaned_data['new_email']
+			if new_email and User.objects.filter(email=new_email).count():
 				raise forms.ValidationError("Email address is alredy in use.")
-			return email	
+			return new_email	
 
 class RegistrationForm(forms.Form):
 	username = forms.CharField(label='Username',max_length=30)

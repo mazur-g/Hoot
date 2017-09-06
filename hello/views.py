@@ -17,7 +17,7 @@ def index(request):
 @login_required
 def map(request):
     if request.user.is_active:
-        if request.method == 'POST':
+        if request.method == "POST":
                 x = request.POST['x']
                 y = request.POST['y']
                 with open("/hello/static/rgdata.xht","a") as datas:
@@ -33,13 +33,14 @@ def profile(request):
     if request.user.is_active:
         userProfile = UserProfile.objects.get(user=request.user)
         form = ChangeUserProfileForm()
-        if request.method == 'POST':
+        if request.method == "POST":
             form = ChangeUserProfileForm(request.POST,request.FILES)
             if form.is_valid():
                 user = request.user
                 userProfile = UserProfile.objects.get(user=user)
                 userProfile.image = request.FILES.get('new_image',userProfile.image)
-                user.email = request.POST.get('new_email',user.email)
+                if request.POST.get('new_email'):
+                    user.email = request.POST.get('new_email')
                 user.save()
                 userProfile.save()
                 context = {'userProfile' : userProfile, 'form' : form}
