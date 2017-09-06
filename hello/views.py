@@ -41,15 +41,17 @@ def map(request):
                 if ip:
                     location = g.coords(ip)
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
-                with open(file_path,"a") as datas:
-                    datas.write('\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
+                with open(file_path,"r+") as datas:
+                    data_tmp = datas.read()[:-27]
+                    datas.write(data_tmp+'\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
                     '">\n\t<name>'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '+str(geo_message)+
                     '</name>\n'
                     '\t<magnitude>1.0</magnitude>\n'
                     '\t<Point>\n'
                     '\t\t<coordinates>'+str(location[0])+','+str(location[1])+',0</coordinates>\n'
                     '\t</Point>\n'
-                    '</Placemark>')
+                    '</Placemark>'
+                    '\n</Folder></Document></kml>')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})

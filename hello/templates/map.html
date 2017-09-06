@@ -36,6 +36,21 @@
     </style>
   </head>
   <body>
+
+<div class="jumbotron text-center">
+  <div class="container">
+
+<form action="/map/" method="POST">
+{% csrf_token %}
+  <div class="input-group">
+    <input name="message" value="{{ geo_message }}" class="form-control input-lg" id="inputlg" placeholder="Your message">
+<span class="input-group-btn">
+    <input type="submit" value="Post" class="btn btn-lg btn-default"></input>
+</span>
+  </div>
+
+</form>
+
     <div id="map" class="map"><div id="info"></div></div>
     <script>
       var styleCache = {};
@@ -129,19 +144,6 @@
 
 
 
-<div class="jumbotron text-center">
-  <div class="container">
-
-<form action="/map/" method="POST">
-{% csrf_token %}
-  <div class="input-group">
-    <input name="message" value="{{ geo_message }}" class="form-control input-lg" id="inputlg" placeholder="Your message">
-<span class="input-group-btn">
-    <input type="submit" value="Post" class="btn btn-lg btn-default"></input>
-</span>
-  </div>
-
-</form>
 
 <div class="space"></div>
 
