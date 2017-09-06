@@ -41,9 +41,10 @@ def map(request):
                 if ip:
                     location = g.coords(ip)
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
-                with open(file_path,"r+") as datas:
-                    data_tmp = datas.read()[:-27]
-                    datas.truncate()
+                datas = open(file_path,"r")
+                data_tmp = datas.read()[:-27]
+                open.('file_path','w').close()
+                with open(file_path,'r+') as datas:
                     datas.write(data_tmp+'\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
                     '">\n\t<name>'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '+str(geo_message)+
                     '</name>\n'
