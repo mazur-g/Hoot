@@ -43,9 +43,9 @@ def map(request):
                     datas.write('\n\n<entry> <title>'+request.user.username+'\'s post</title> '
                                 '<published>DATA</published>'
                                 '<content type="html">'+str(geo_message)+'L</content>]'
-                                ' <author> <name>'+ request.user.username +'</name> </author> <georss:point>'+location[0]+' '
-                                +location[1]+'</georss:point> <geo:lat>'+location[0]+'</geo:lat> <geo:long>'
-                                +location[1]+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n')
+                                ' <author> <name>'+ request.user.username +'</name> </author> <georss:point>'+str(location[0])+' '
+                                +str(location[1])+'</georss:point> <geo:lat>'+str(location[0])+'</geo:lat> <geo:long>'
+                                +str(location[1])+'</geo:long> <woe:woeid>03955</woe:woeid> </entry> \n\n')
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
