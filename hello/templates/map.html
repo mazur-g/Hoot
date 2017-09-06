@@ -42,7 +42,7 @@
   <div class="container">
 
 <form action="/map/" method="POST">
-	   
+{% csrf_token %}
   <div class="input-group">
     <input id="message" value="{{ geo_message }}" class="form-control input-lg" id="inputlg" placeholder="Your message">
 <span class="input-group-btn">
