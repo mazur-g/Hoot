@@ -43,6 +43,7 @@ def map(request):
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
                 with open(file_path,"r+") as datas:
                     data_tmp = datas.read()[:-27]
+                    datas.truncate()
                     datas.write(data_tmp+'\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
                     '">\n\t<name>'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '+str(geo_message)+
                     '</name>\n'
