@@ -54,7 +54,7 @@ def map(request):
                     '</name>\n'
                     '\t<magnitude>1.0</magnitude>\n'
                     '\t<Point>\n'
-                    '\t\t<coordinates>'+str(location[0]+random()/100)+','+str(location[1]+random()/100)+
+                    '\t\t<coordinates>'+str(location[0]+random()/10000)+','+str(location[1]+random()/10000)+
                     ',0</coordinates>\n'
                     '\t</Point>\n'
                     '</Placemark>'
