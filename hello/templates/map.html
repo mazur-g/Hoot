@@ -55,12 +55,8 @@
     <script>
       var styleCache = {};
       var styleFunction = function(feature) {
-        // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
-        // standards-violating <magnitude> tag in each Placemark.  We extract it from
-        // the Placemark's name instead.
         var name = feature.get('name');
-        var magnitude = parseFloat(name.substr(2));
-        var radius = 5 + 20 * (magnitude - 5);
+        var radius = 7;
         var style = styleCache[radius];
         if (!style) {
           style = new ol.style.Style({
@@ -97,11 +93,16 @@
       });
 
       var map = new ol.Map({
-        layers: [raster, vector],
+        layers: [raster, vector, new ol.layer.Tile({
+            source: new ol.source.OSM({
+              wrapX: false
+            })
+          })],
         target: 'map',
         view: new ol.View({
           center: [0, 0],
-          zoom: 2
+          extent: ol.proj.get('EPSG:3857').getExtent(),
+          zoom: 5
         })
       });
 
@@ -140,6 +141,8 @@
       map.on('click', function(evt) {
         displayFeatureInfo(evt.pixel);
       });
+
+      map.render()
     </script>
 
 
