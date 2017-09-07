@@ -41,7 +41,7 @@ def	redirect_page(request):
 @login_required
 def search_user(request):
 	if request.method == 'POST':
-		form = SearchForm(request.POST)
+		form = SearchForm(data=request.POST)
 		if form.is_valid():
 			try: 
 				name = request.POST['name']
