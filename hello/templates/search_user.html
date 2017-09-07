@@ -1,10 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block search %}
 <center>
+
 <form method="POST" action =".">
 {% csrf_token %}
+      <div class="input-group">
 {{form.as_p}}
-<input type="submit" value="Search" />
+
+<span class="input-group-btn">
+<input type="submit" value="Search" class="btn btn-lg btn-default" />
+    </span>
+  </div>
+
 </form>
 </center>
 {% endblock %}
