@@ -6,6 +6,7 @@
 {% block head%}User Registration{% endblock %}
 {% block content %}
 
+{% if not user.is_authenticated %} 
 
  {% if form.errors %}
         {% for error in field.errors %}
@@ -31,4 +32,29 @@
 </div>
 </div>
 
+
+{% else %}
+<div class="jumbotron text-center">
+<div class="container">
+
+<a href="/" class="hoot-logo">
+      <img src="{% static 'img/hoot-logo.png'%}">
+    </a>
+</div>
+
+<div class = "space">
+<center>
+<p> You have been registered and logged in properly. Redirecting to home page... </p>
+</center>
+<script>
+    function redirect(){
+       window.location.href = "{% url 'index' %}";
+    }
+
+    setTimeout(redirect, 3000); //2000 is equivalent to 2 seconds
+</script>
+</div>
+</div>
+
+{% endif %}
 {% endblock %}

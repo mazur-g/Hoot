@@ -3,7 +3,7 @@ from .forms import *
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-from django.contrib.auth import logout
+from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
@@ -17,12 +17,25 @@ def register_page(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST,request.FILES)
 		if form.is_valid():
-			user = User.objects.create_user(username=form.cleaned_data['username'],password=form.cleaned_data['password1'],email=form.cleaned_data['email'])
+			user = User.objects.create_user(username=request.POST['username'],password = request.POST['password1'],email=request.POST['email'])
 			image = request.FILES.get('image','img/default2.jpg')
 			userProfile = UserProfile.objects.create(user=user,image=image)
-			return redirect('index')
+			usr = authenticate(username=request.POST['username'],password=request.POST['password1'])
+			if usr is not None:
+				if usr.is_active:
+					login(request,usr)
+					print("login")
+			else:
+				print("not login")
+			return redirect('accounts:register')
 	variables = RequestContext(request,{'form':form})
 	return render_to_response('registration/register.html',variables)
+
+@login_required
+def	redirect_page(request):
+		return render(request,'redirect.html')
+
+
 
 
 @login_required
