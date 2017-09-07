@@ -13,7 +13,9 @@ from django.contrib.gis.geoip import GeoIP
 import os
 from django.conf import settings
 from time import gmtime, strftime
-from random import randint
+from random import random
+from django.core.management import call_command
+
 
 
 # Create your views here.
@@ -52,10 +54,12 @@ def map(request):
                     '</name>\n'
                     '\t<magnitude>1.0</magnitude>\n'
                     '\t<Point>\n'
-                    '\t\t<coordinates>'+str(location[0])+','+str(location[1])+',0</coordinates>\n'
+                    '\t\t<coordinates>'+str(location[0]+random()/100)+','+str(location[1]+random()/100)+
+                    ',0</coordinates>\n'
                     '\t</Point>\n'
                     '</Placemark>'
                     '\n</Folder></Document></kml>')
+                call_command('collectstatic', verbosity=0, interactive=False)
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
