@@ -85,4 +85,4 @@ class RegistrationForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-	name = widget=forms.TextInput(attrs={'class' : 'form-control input-lg','placeholder' : 'username'})
+	name = forms.CharField(label='Username',max_length=30)
