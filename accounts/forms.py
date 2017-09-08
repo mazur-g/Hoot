@@ -85,5 +85,5 @@ class RegistrationForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-	name = widget=forms.CharFiels(attrs={'class' : 'form-control input-lg','placeholder' : 'username'},
+	name = widget=forms.CharField(attrs={'class' : 'form-control input-lg','placeholder' : 'username'},
                                   label = 'Username', max_length = 30)
