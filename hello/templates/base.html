@@ -86,30 +86,30 @@
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li>
-        <a href="/"><span class="glyphicon glyphicon-home"></span> Home </a>
+      <li><br>
+        <a href="/"><span class="glyphicon glyphicon-home"></span> Home </a><br>
       </li>
-      <li>
-        <a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Your Profile </a>
+      <li><br>
+        <a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Your Profile </a><br>
       </li>
-      <li>
-        <a href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Hoot Map </a>
+      <li><br>
+        <a href="{% url 'map' %}"><span class="glyphicon glyphicon-map-marker"></span> Hoot Map </a><br>
       </li>
       <li>
 	{% if not user.is_active %}
-        <a href="{% url 'accounts:register' %}"><span class="glyphicon glyphicon-barcode"></span> Register </a>
+       <br> <a href="{% url 'accounts:register' %}"><span class="glyphicon glyphicon-barcode"></span> Register </a><br>
 	{% endif %}
       </li>
     </ul>
 {% if user.is_active %}
     <ul class="nav navbar-nav">
-    <li> {% if request.resolver_match.url_name != 'search' %}<a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
+    <li> {% if request.resolver_match.url_name != 'search' %}<br><a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a><br>
         {% endif %}<div class="centerverticaly">{% block search %}{% endblock %}</div>
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right">
-        <a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a>
+        <br><a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a><br>
       </li>
     </ul>
   {% endif %}
