@@ -68,6 +68,12 @@
 	background: #eeeeee;
     }
 
+    .jumbotron centervertically {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
     body {
 	overflow: hidden;
       }
@@ -79,7 +85,6 @@
 
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
   <div class="container">
-       <div class="form-control input-lg">
     <ul class="nav navbar-nav">
       <li>
         <a href="/"><span class="glyphicon glyphicon-home"></span> Home </a>
@@ -99,7 +104,7 @@
 {% if user.is_active %}
     <ul class="nav navbar-nav">
     <li> {% if request.resolver_match.url_name != 'search' %}<a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
-        {% endif %}<span style="white-space: nowrap">{% block search %}{% endblock %}</span>
+        {% endif %}<div class="centerverticaly">{% block search %}{% endblock %}</div>
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -108,7 +113,7 @@
       </li>
     </ul>
   {% endif %}
-  </div></div>
+  </div>
 </nav>
 
 
