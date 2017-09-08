@@ -1,30 +1,10 @@
 
-{% extends 'base.html' %}
+{% extends 'profile_page.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
-<div class="jumbotron text-center">
-<div class="container">
-<div class="row">
-<figure class="snip1344">
-<img src="{{userProfile.image.url }}" alt="profile-sample1" class="background" height="300" width="300"/>
-<img src="{{userProfile.image.url }}" alt="profile-sample1" class="profile"/>
 
-  <figcaption>
-    <h3>
-    {{userProfile.user.username}}
-    <span>Email: {{userProfile.user.email}}</span>
-    <span>Since: {{userProfile.user.date_joined}}</span>
-    {% if not userProfile.user.last_login %}
-    <span>Last activity: {{userProfile.user.date_joined}}</span>
-    {% else %}
-    <span>Last activity: {{userProfile.user.last_login}}</span>
-    {% endif %}
-    </h3>
-  </figcaption>
- </figure>
- </div>
-
+{% block changes %}
  <div class="row" >
+
 <script>
 function Show() {
 
@@ -58,11 +38,6 @@ window.onload = function() {
  </div>
 
 
-</div>
-<div class="space">
-</div>
-<div class="space"></div>
-</div>
 
 
 {% endblock %}

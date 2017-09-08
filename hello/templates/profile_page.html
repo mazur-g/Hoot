@@ -18,14 +18,16 @@
     {% else %}
     <span>Last activity: {{userProfile.user.last_login}}</span>
     {% endif %}
+    <span>Number of hoots: {{userProfile.hoots}}</span>
     </h3>
   </figcaption>
  </figure>
 </div>
+{% block changes %}
+{% endblock %}
 <div class="space">
 </div>
 <div class="space"></div>
 </div>
-
 
 {% endblock %}

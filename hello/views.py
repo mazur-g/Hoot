@@ -15,7 +15,7 @@ from django.conf import settings
 from time import gmtime, strftime
 from random import random
 from django.core.management import call_command
-
+from accounts.models import UserProfile
 
 
 # Create your views here.
@@ -60,6 +60,8 @@ def map(request):
                     '</Placemark>'
                     '\n</Folder></Document></kml>')
                 call_command('collectstatic', verbosity=0, interactive=False)
+                userProfile = UserProfile.objects.get(user=request.user)
+                userProfile.hoots+=1
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})

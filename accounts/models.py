@@ -10,3 +10,4 @@ class UserProfile(models.Model):
 	upload_to="img/",
 	default = "img/default2.jpg"
 	 )
+	hoots = models.IntegerField(default=0)
