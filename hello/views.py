@@ -61,7 +61,8 @@ def map(request):
                     '\n</Folder></Document></kml>')
                 call_command('collectstatic', verbosity=0, interactive=False)
                 userProfile = UserProfile.objects.get(user=request.user)
-                userProfile.hoots=userProfile.hoots+1
+                userProfile.hoots+=1
+                userProfile.save()
         else:
             form = GeoMessageForm()
         return render(request, 'map.html', {'form': form})
