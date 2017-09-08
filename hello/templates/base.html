@@ -97,7 +97,7 @@
     </ul>
 {% if user.is_active %}
     <ul class="nav navbar-nav">
-    <li> {% request.resolver_match.url_name != 'search' %}<a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
+    <li> {% if request.resolver_match.url_name != 'search' %}<a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
         {% endif %}{% block search %}{% endblock %}
     </li>
     </ul>
