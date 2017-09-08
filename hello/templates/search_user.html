@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
-{% block search %}
-<br>
+{% block search %}<font size="6">
+</font>
 <form method="POST" action =".">
 {% csrf_token %}
 {% for field in form %}
@@ -8,5 +8,7 @@
 {% endfor %}
  <input type="submit" value="Search" />
 </form>
-<br>
+<font size="6">
+
+</font>
 {% endblock %}
