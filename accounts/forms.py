@@ -86,3 +86,12 @@ class RegistrationForm(forms.Form):
 
 class SearchForm(forms.Form):
 	name = forms.CharField(label='Username',max_length=30)
+
+	def clean_name(self):
+		if 'name' in self.cleaned_data:
+			name = self.cleaned_data['name']
+			try: 
+				User.objects.get(username=name)				
+			except ObjectDoesNotExist:
+				raise forms.ValidationError("User not found")
+			return name

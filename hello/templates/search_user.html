@@ -1,6 +1,16 @@
 {% extends 'index.html' %}
 {% block search %}
 
+{% if form.errors %}
+<ul class="nav navbar-nav">
+
+	<li>
+		<center><p style="color:red;">User not found. Try again</p> </center>
+	</li>
+</ul>
+ {% endif %}
+
+
 <form method="POST" action =".">
 {% csrf_token %}
 {% for field in form %}

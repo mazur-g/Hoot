@@ -24,10 +24,8 @@ def register_page(request):
 			if usr is not None:
 				if usr.is_active:
 					login(request,usr)
-					print("login")
 			else:
-				print("not login")
-			return redirect('accounts:register')
+				return redirect('accounts:register')
 	variables = RequestContext(request,{'form':form})
 	return render_to_response('registration/register.html',variables)
 
@@ -49,6 +47,10 @@ def search_user(request):
 				return redirect(reverse('accounts:profile',args=[name]))
 			except:
 				redirect('accounts:search')
+		else:
+			variables = RequestContext(request,{'form' : form })
+			return render_to_response('search_user.html',variables)
+
 	form = SearchForm()
 	variables = RequestContext(request,{'form' : form })
 	return render_to_response('search_user.html',variables)
