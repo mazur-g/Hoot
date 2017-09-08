@@ -2,10 +2,12 @@
 {% block search %}
 <form method="POST" action =".">
 {% csrf_token %}
+ <div class="form-control input-lg">
 {% for field in form %}
 {{field}}
 {% endfor %}
  <input type="submit" value="Search" />
+  </div>
 </form>
 <br>
 {% endblock %}
