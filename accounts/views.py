@@ -54,9 +54,6 @@ def search_user(request):
 	return render_to_response('search_user.html',variables)
 
 
-
-	return render(request,'search_user.html')
-
 @login_required
 def profile_page(request,username):
 	user = get_object_or_404(User, username=username)
