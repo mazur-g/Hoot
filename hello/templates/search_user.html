@@ -11,14 +11,14 @@
 {% csrf_token %}
 
 {% for field in form %}
-
-  <div class="form-control input-lg" id="inputlg" placeholder="Your message">
+  <div class="input-group">
 {{field}}
-    </div>
 
 {% endfor %}
+      <span class="input-group-btn">
 <input type="submit" value="Search" class="btn btn-lg btn-default" />
-
+</span>
+  </div>
 
 </form>
 </div>
