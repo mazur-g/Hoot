@@ -5,13 +5,9 @@
 <form method="POST" action =".">
 {% csrf_token %}
 {% for field in form %}
-  <div class="input-group">
 {{field}}
 {% endfor %}
-      <span class="input-group-btn">
-<input type="submit" value="Search" class="btn btn-lg btn-default" />
-</span>
-  </div>
+ <input type="submit" value="Search"/>
 </form>
 </div>
 </div>
