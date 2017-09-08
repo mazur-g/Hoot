@@ -10,7 +10,12 @@
 <form method="POST" action =".">
 {% csrf_token %}
 
-{{form}}
+{% for field in form %}
+
+  <div class="form-control input-lg" id="inputlg" placeholder="Your message">
+{{field}}
+    </div>
+
 
 <input type="submit" value="Search" class="btn btn-lg btn-default" />
 
