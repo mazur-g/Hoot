@@ -7,9 +7,8 @@
 	</li>
 </ul>
  {% endif %}
-<div style="display: table-cell">
     <div style="vertical-align: middle">
-<form method="POST" action ="." class="form-inline">
+<form method="POST" action ="." class="form-inline" style="display: inline-block">
 {% csrf_token %}<div class="input-group">
  <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search">
     <span class="input-group-btn">
@@ -17,7 +16,6 @@
     </span>
     </div>
 </form>
-</div>
 </div>
 
 {% endblock %}
