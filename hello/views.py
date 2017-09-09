@@ -31,9 +31,9 @@ def index(request):
     In fact it just evokes the template 'index.html'
 
     Args:
-    request: the request object used to generate this response.
+    request (:obj:`HttpRequest`): the request object used to generate this response.
     Returns:
-    The HttpResponse object.
+    (:obj:`HttpResponse`): the HttpResponse object.
 
     """
     return render(request, 'index.html')
@@ -93,9 +93,9 @@ def profile(request):
     It allows to make changes in your own profile, validates implemented values.
 
     Args:
-    request: the request object used to generate this response.
+    request (:obj:`HttpRequest`): the request object used to generate this response.
     Returns:
-    The HttpResponse object with profile changes if everything is good or HttpResponse object
+    (:obj:`HttpResponse`): the HttpResponse object with profile changes if everything is good or HttpResponse object
     with error messages otherwise.
     
     """
