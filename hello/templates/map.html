@@ -43,8 +43,8 @@
 <form action="/map/" method="POST">
 {% csrf_token %}
     <div class="input-group">
-               <input name="longitude" value="{{ geo_lon }}" class="form-control input-lg" id="inputlon" placeholder="Your longitude">
-      <input name="latitude" value="{{ geo_lat }}" class="form-control input-lg" id="inputlat" placeholder="Your latitude">
+               <input name="longitude" value="{{ geo_lon }}"  id="inputlon" placeholder="Your longitude">
+      <input name="latitude" value="{{ geo_lat }}" id="inputlat" placeholder="Your latitude">
     </div>
   <div class="input-group">
     <input name="message" value="{{ geo_message }}" class="form-control input-lg" id="inputlg" placeholder="Your message">
@@ -147,6 +147,9 @@
       });
 
      map.render()
+
+     document.getElementById("inputlon").value = "My value";
+     document.getElementById("inputlat").value = "My value";
 
     </script>
 
