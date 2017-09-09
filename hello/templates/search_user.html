@@ -8,12 +8,10 @@
 </ul>
  {% endif %}
 <a>
-<form method="POST" action ="." class="form-inline my-2 my-lg-0">
+<form method="POST" action ="." class="form-inline">
 {% csrf_token %}
-{% for field in form %}
-{{field}}
-{% endfor %}
- <input type="submit" value="Search" />
+ <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
 </a>
 {% endblock %}

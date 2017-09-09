@@ -85,7 +85,7 @@ class RegistrationForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-	name = forms.CharField(label='Username',max_length=30, widget=forms.TextInput(attrs={"background-color":"black"}))
+	name = forms.CharField(label='Username',max_length=30)
 
 	def clean_name(self):
 		if 'name' in self.cleaned_data:

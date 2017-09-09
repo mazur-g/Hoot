@@ -39,10 +39,10 @@ def	redirect_page(request):
 @login_required
 def search_user(request):
 	if request.method == 'POST':
-		form = SearchForm(request.POST)
+		form = SearchForm(data=request.POST)
 		if form.is_valid():
 			try: 
-				name = request.POST['name']
+				name = form.cleaned_data['name']
 				get_object_or_404(User,username=name)
 				return redirect(reverse('accounts:profile',args=[name]))
 			except:
