@@ -101,7 +101,7 @@
 {% if user.is_active %}
     <ul class="nav navbar-nav">
     <li> {% if request.resolver_match.url_name != 'search' %}<a href="{% url 'accounts:search' %}"><span class="glyphicon glyphicon-search"></span> Search user</a>
-        {% endif %}<a>{% block search %}</a>{% endblock %}
+        {% endif %}{% block search %}{% endblock %}
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
