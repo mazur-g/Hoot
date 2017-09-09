@@ -1,3 +1,9 @@
+"""
+This module implements the view functions - functions that are excecuting while user connects to url defined in urls.py module
+"""
+
+
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -17,9 +23,19 @@ from random import random
 from django.core.management import call_command
 from accounts.models import UserProfile
 
-
 # Create your views here.
 def index(request):
+    """
+
+    Function is responsible for actions while opening home page.
+    In fact it just evokes the template 'index.html'
+
+    Args:
+    request: the request object used to generate this response.
+    Returns:
+    The HttpResponse object.
+
+    """
     return render(request, 'index.html')
 
 
@@ -71,6 +87,18 @@ def map(request):
 
 @login_required
 def profile(request):
+    """
+
+    Function is responsible for actions while opening "Your profile" from home page.
+    It allows to make changes in your own profile, validates implemented values.
+
+    Args:
+    request: the request object used to generate this response.
+    Returns:
+    The HttpResponse object with profile changes if everything is good or HttpResponse object
+    with error messages otherwise.
+    
+    """
     if request.user.is_active:
         userProfile = UserProfile.objects.get(user=request.user)
         form = ChangeUserProfileForm()
