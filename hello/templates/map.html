@@ -158,8 +158,8 @@
      function showPosition(position) {
 
 
-     document.getElementById("inputlon").value = "My value";
-     document.getElementById("inputlat").value = "My value";
+     document.getElementById("inputlon").value = position.coords.longitude;
+     document.getElementById("inputlat").value = position.coords.latitude;
                    }
 
             function showError(error) {
