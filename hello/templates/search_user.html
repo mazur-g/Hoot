@@ -7,15 +7,14 @@
 	</li>
 </ul>
  {% endif %}
-    <div style="vertical-align: middle">
-<form method="POST" action ="." class="form-inline" style="display: inline-block">
+<a>
+<form method="POST" action ="." class="form-inline">
 {% csrf_token %}<div class="input-group">
- <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search">
+ <input name="name" class="form-control mr-sm-2" type="text" placeholder="username">
     <span class="input-group-btn">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
     </span>
     </div>
 </form>
-</div>
-
+</a>
 {% endblock %}
