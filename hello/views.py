@@ -54,6 +54,8 @@ def map(request):
             form = GeoMessageForm(data=request.POST)
             if form.is_valid():
                 geo_message = form.cleaned_data['message']
+                geo_lon = form.cleaned_data['longitude']
+                geo_lat = form.cleaned_data['latitude']
                 g = GeoIP()
                 ip = get_client_ip(request)
                 if ip:
