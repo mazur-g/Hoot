@@ -9,5 +9,5 @@ from crispy_forms.bootstrap import (FormActions)
 
 class GeoMessageForm(forms.Form):
     message = forms.CharField(label='message', max_length=150)
-    longitude = forms.CharField(label='message')
-    latitude = forms.CharField(label='message')
+    longitude = forms.CharField(label='longitude')
+    latitude = forms.CharField(label='latitude')
