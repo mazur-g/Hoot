@@ -107,6 +107,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right">
         <a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-book"></span>  Log out</a>
+          {% if request.resolver_match.url_name != 'search' %}<br>{% endif %}
       </li>
     </ul>
   {% endif %}
