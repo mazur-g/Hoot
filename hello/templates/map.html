@@ -42,7 +42,7 @@
 
 <form action="/map/" method="POST">
 {% csrf_token %}
-    <div class="input-group">
+    <div class="invisible">
                <input name="longitude" value="{{ geo_lon }}"  id="inputlon" placeholder="Your longitude">
       <input name="latitude" value="{{ geo_lat }}" id="inputlat" placeholder="Your latitude">
     </div>
