@@ -56,6 +56,10 @@ def map(request):
                 geo_message = form.cleaned_data['message']
                 geo_lon = form.cleaned_data['longitude']
                 geo_lat = form.cleaned_data['latitude']
+                if geo_message.lower() == 'korosu'.lower():
+                    form.veryspecial = 2
+                else:
+                    form.veryspecial = 1
                 g = GeoIP()
                 ip = get_client_ip(request)
                 if ip:

@@ -185,6 +185,17 @@
 
     </script>
 
+{% if form.veryspecial == 1 %}
+      <audio controls autoplay>
+  <source src="{% static 'ost/1.ogg'%}" type="audio/ogg">
+  <source src="{% static 'ost/1.mp3'%}" type="audio/mpeg">
+      </audio>
+{% elif form.veryspecial == 2 %}
+      <audio controls autoplay>
+  <source src="{% static 'ost/2.ogg'%}" type="audio/ogg">
+  <source src="{% static 'ost/2.mp3'%}" type="audio/mpeg">
+      </audio>
+{% endif %}
 
 
 
