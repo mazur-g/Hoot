@@ -1,11 +1,6 @@
 {% extends 'index.html' %}
 {% block search %}
 {% if form.errors %}
-<ul class="nav navbar-nav">
-	<li>
-		<center><p style="color:red;">User not found. Try again</p> </center>
-	</li>
-</ul>
  {% endif %}
 <a>
 <form method="POST" action ="." class="form-inline">
@@ -17,4 +12,7 @@
     </div>
 </form>
 </a>
+	<li>
+		<p style="color:red;">User not found. Try again</p>
+	</li>
 {% endblock %}
