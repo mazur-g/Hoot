@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block search %}
-{% if form.errors %}
- {% endif %}
+
+
 <a>
 <form method="POST" action ="." class="form-inline">
 {% csrf_token %}<div class="input-group">
@@ -12,7 +12,9 @@
     </div>
 </form>
 </a>
+{% if form.errors %}<a>
 	<li>
 		<p style="color:red;">User not found. Try again</p>
-	</li>
+    </li></a>
+ {% endif %}
 {% endblock %}
