@@ -60,6 +60,8 @@ def map(request):
                 ip = get_client_ip(request)
                 if ip:
                     location = g.coords(ip)
+                if geo_lon != -10000 and geo_lat != -10000:
+                    location = [geo_lon, geo_lat]
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
                 datas = open(file_path,"r")
                 data_tmp = datas.read()[:-27]
