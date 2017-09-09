@@ -1,6 +1,11 @@
 {% extends 'index.html' %}
 {% block search %}
-
+<style>
+    a:hover {
+    background-color: #383838;
+    transition: background-color 2s;
+}
+</style>
 {% if form.errors %}
 <ul class="nav navbar-nav">
 	<li>
@@ -13,7 +18,6 @@
 <form method="POST" action =".">
 {% csrf_token %}
 {% for field in form %}
-    <style
 {{field}}
 {% endfor %}
  <input type="submit" value="Search" />
