@@ -289,7 +289,7 @@ IGNORABLE_404_URLS = []
 # A secret key for this particular Django installation. Used in secret-key
 # hashing algorithms. Set this in your settings, or Django will complain
 # loudly.
-SECRET_KEY = '&q#qw=vgosww&llk8(*#c9rhzz*n@133=$g61agw+_=+pd#vl0'
+SECRET_KEY = '61agwgosww&l9rhzz*n+_=+pd#vl0&q#qw=v@133=$glk8(*#c'
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'

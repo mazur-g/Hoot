@@ -2,15 +2,8 @@
 This module implements the view functions - functions that are excecuting while user connects to url defined in urls.py module
 """
 
-
-
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from accounts.models import UserProfile
 from accounts.forms import ChangeUserProfileForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
