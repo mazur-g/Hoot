@@ -18,8 +18,6 @@ from hello.forms import GeoMessageForm
 from django.contrib.gis.geoip import GeoIP
 import os
 from django.conf import settings
-from time import gmtime, strftime
-from random import random
 from django.core.management import call_command
 from accounts.models import UserProfile
 from hello.utils import get_client_ip, post

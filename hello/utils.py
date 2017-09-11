@@ -1,3 +1,6 @@
+from time import gmtime, strftime
+from random import random
+
 
 def get_client_ip(request):
     """
