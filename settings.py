@@ -17,7 +17,7 @@ def gettext_noop(s):
 # CORE             #
 ####################
 
-DEBUG = True
+DEBUG = False
 
 # Whether the framework should propagate raw exceptions rather than catching
 # them. This is useful under some testing situations and should never be used
@@ -289,7 +289,7 @@ IGNORABLE_404_URLS = []
 # A secret key for this particular Django installation. Used in secret-key
 # hashing algorithms. Set this in your settings, or Django will complain
 # loudly.
-SECRET_KEY = '61agwgosww&l9rhzz*n+_=+pd#vl0&q#qw=v@133=$glk8(*#c'
+SECRET_KEY = '&q#qw=vgosww&llk8(*#c9rhzz*n@133=$g61agw+_=+pd#vl0'
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
@@ -308,7 +308,7 @@ STATIC_ROOT = "/hello/static/"
 
 # URL that handles the static files served from STATIC_ROOT.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = "/static/"
+STATIC_URL = None
 
 # List of upload handler classes to be applied in order.
 FILE_UPLOAD_HANDLERS = [
