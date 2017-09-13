@@ -66,7 +66,26 @@ def map(request):
                     location = [geo_lon, geo_lat]
 
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
-                post(file_path,request,geo_message,location)
+
+                datas = open(file_path, "r")
+                data_tmp = datas.read()[:-27]
+                datas.close()
+                open('file_path', 'w').close()
+                with open(file_path, 'r+') as datas:
+                    datas.write(data_tmp + '\n\n<Placemark id="' + request.user.username + ', '
+                                + strftime("%Y-%m-%d %H:%M:%S", gmtime()) +
+                                '">\n\t<name>' + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ': '
+                                + request.user.username + ' posts: ' + str(geo_message) +
+                                '</name>\n'
+                                '\t<magnitude>1.0</magnitude>\n'
+                                '\t<Point>\n'
+                                '\t\t<coordinates>' + str(float(location[0]) + random() / 10000) + ','
+                                + str(float(location[1]) + random() / 10000) +
+                                ',0</coordinates>\n'
+                                '\t</Point>\n'
+                                '</Placemark>'
+                                '\n</Folder></Document></kml>')
+
                 call_command('collectstatic', verbosity=0, interactive=False)
                 userProfile = UserProfile.objects.get(user=request.user)
                 userProfile.hoots+=1
