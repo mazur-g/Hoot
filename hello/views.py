@@ -2,8 +2,15 @@
 This module implements the view functions - functions that are excecuting while user connects to url defined in urls.py module
 """
 
+
+
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from accounts.models import UserProfile
 from accounts.forms import ChangeUserProfileForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -11,10 +18,10 @@ from hello.forms import GeoMessageForm
 from django.contrib.gis.geoip import GeoIP
 import os
 from django.conf import settings
-from django.core.management import call_command
-from accounts.models import UserProfile
 from time import gmtime, strftime
 from random import random
+from django.core.management import call_command
+from accounts.models import UserProfile
 
 # Create your views here.
 def index(request):
@@ -24,24 +31,15 @@ def index(request):
     In fact it just evokes the template 'index.html'
 
     Args:
-        request (:obj:`HttpRequest`): the request object used to generate this response.
+    request (:obj:`HttpRequest`): the request object used to generate this response.
     Returns:
-        (:obj:`HttpResponse`): the HttpResponse object.
+    (:obj:`HttpResponse`): the HttpResponse object.
 
     """
     return render(request, 'index.html')
 
+
 def get_client_ip(request):
-    """
-
-    Function allowing to get user IP address even when IF forwarding is present
-
-    Args:
-        request (:obj:`HttpRequest`): the request object, meaning current state of
-            variables in a view
-    Returns:
-        ip address of the client (user, or his internet provider)
-    """
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -51,16 +49,6 @@ def get_client_ip(request):
 
 @login_required
 def map(request):
-    """
-
-    Map is a view displaying the map template and handling message posting
-
-    Args:
-        request (:obj:`HttpRequest`): the request object used to generate this response.
-
-    Returns:
-         (:obj:`HttpResponse`): proper response for users request.
-    """
     if request.user.is_active:
         if request.method == "POST":
             form = GeoMessageForm(data=request.POST)
@@ -68,41 +56,33 @@ def map(request):
                 geo_message = form.cleaned_data['message']
                 geo_lon = form.cleaned_data['longitude']
                 geo_lat = form.cleaned_data['latitude']
-
                 if geo_message.lower() == 'korosu'.lower():
                     form.veryspecial = 2
                 else:
                     form.veryspecial = 1
-
                 g = GeoIP()
                 ip = get_client_ip(request)
-
                 if ip:
                     location = g.coords(ip)
-                if geo_lon != -10000 and geo_lat != -10000: #IMPURE!
+                if geo_lon != -10000 and geo_lat != -10000:
                     location = [geo_lon, geo_lat]
-
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
-
-                datas = open(file_path, "r")
+                datas = open(file_path,"r")
                 data_tmp = datas.read()[:-27]
                 datas.close()
-                open('file_path', 'w').close()
-                with open(file_path, 'r+') as datas:
-                    datas.write(data_tmp + '\n\n<Placemark id="' + request.user.username + ', '
-                                + strftime("%Y-%m-%d %H:%M:%S", gmtime()) +
-                                '">\n\t<name>' + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ': '
-                                + request.user.username + ' posts: ' + str(geo_message) +
-                                '</name>\n'
-                                '\t<magnitude>1.0</magnitude>\n'
-                                '\t<Point>\n'
-                                '\t\t<coordinates>' + str(float(location[0]) + random() / 10000) + ','
-                                + str(float(location[1]) + random() / 10000) +
-                                ',0</coordinates>\n'
-                                '\t</Point>\n'
-                                '</Placemark>'
-                                '\n</Folder></Document></kml>')
-
+                open('file_path','w').close()
+                with open(file_path,'r+') as datas:
+                    datas.write(data_tmp+'\n\n<Placemark id="'+request.user.username+', '+strftime("%Y-%m-%d %H:%M:%S", gmtime())+
+                    '">\n\t<name>'+strftime("%Y-%m-%d %H:%M:%S", gmtime())+': '
+                    +request.user.username+' posts: '+str(geo_message)+
+                    '</name>\n'
+                    '\t<magnitude>1.0</magnitude>\n'
+                    '\t<Point>\n'
+                    '\t\t<coordinates>'+str(float(location[0])+random()/10000)+','+str(float(location[1])+random()/10000)+
+                    ',0</coordinates>\n'
+                    '\t</Point>\n'
+                    '</Placemark>'
+                    '\n</Folder></Document></kml>')
                 call_command('collectstatic', verbosity=0, interactive=False)
                 userProfile = UserProfile.objects.get(user=request.user)
                 userProfile.hoots+=1
