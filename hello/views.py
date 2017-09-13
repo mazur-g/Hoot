@@ -14,6 +14,8 @@ from django.conf import settings
 from django.core.management import call_command
 from accounts.models import UserProfile
 from hello.utils import get_client_ip, post
+from time import gmtime, strftime
+from random import random
 
 # Create your views here.
 def index(request):
