@@ -31,23 +31,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def get_client_ip(request):
-    """
-
-    Function allowing to get user IP address even when IF forwarding is present
-
-    Args:
-        request (:obj:`HttpRequest`): the request object, meaning current state of
-            variables in a view
-    Returns:
-        ip address of the client (user, or his internet provider)
-    """
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 @login_required
 def map(request):
@@ -81,6 +64,7 @@ def map(request):
                     location = g.coords(ip)
                 if geo_lon != -10000 and geo_lat != -10000: #IMPURE!
                     location = [geo_lon, geo_lat]
+
                 file_path = os.path.join(settings.STATIC_ROOT, 'kmldata.kml')
                 post(file_path,request,geo_message,location)
                 call_command('collectstatic', verbosity=0, interactive=False)
